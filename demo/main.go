@@ -57,6 +57,10 @@ func main() {
 		log.Fatalln("Failed to register external review plugin:", err)
 	}
 
+	if err := pluginsRegistry.Register("APPLICATION", plugins.NewOfficerInputPlugin()); err != nil {
+		log.Fatalln("Failed to register officer input plugin:", err)
+	}
+
 	if err := pluginsRegistry.Register("WAIT_FOR_EVENT", plugins.NewEventWaitPlugin(demoDispatcher)); err != nil {
 		log.Fatalln("Failed to register wait for event plugin:", err)
 	}

@@ -13,9 +13,10 @@
             "task_template_id": "npqs-apply-phyto-cert-flow",
             "input_mapping": {},
             "output_mapping": {
-                "reference_number": "reference_number",
-                "sample_required": "npqs.sample_required",
-                "fumigation_required": "npqs.fumigation_required"
+                "reviewerform.reference_number": "reference_number",
+                "reviewerform.sample_required": "npqs.sample_required",
+                "reviewerform.fumigation_required": "npqs.fumigation_required",
+                "reviewerform.review_outcome": "npqs.application_review_outcome"
             }
         },
         {
@@ -91,7 +92,7 @@
         {
             "id": "n5_visual_insp_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-visual-inspection-flow",
+            "task_template_id": "npqs-visual-inspection-result-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -205,13 +206,13 @@
             "id": "e_apply_rejected",
             "source_id": "n1_apply_split",
             "target_id": "end_rejected",
-            "condition": "reviewerform.review_outcome == 'reject'"
+            "condition": "npqs.application_review_outcome == 'reject'"
         },
         {
             "id": "e_apply_approved",
             "source_id": "n1_apply_split",
             "target_id": "sample_split",
-            "condition": "reviewerform.review_outcome == 'approve'"
+            "condition": "npqs.application_review_outcome == 'approve'"
         },
         {
             "id": "e_sample_yes",

@@ -26,7 +26,8 @@
                 "userform": "userform"
             },
             "output_mapping": {
-                "reviewerform": "reviewerform"
+                "reviewerform": "reviewerform",
+                "doc_review_result": "doc_review_result"
             }
         },
         {

@@ -10,7 +10,7 @@
         {
             "id": "n1_apply",
             "type": "TASK",
-            "task_template_id": "npqs-apply-phyto-cert",
+            "task_template_id": "npqs-apply-phyto-cert-flow",
             "input_mapping": {},
             "output_mapping": {
                 "reference_number": "reference_number",
@@ -31,7 +31,7 @@
         {
             "id": "n2_sample_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-sample-received",
+            "task_template_id": "npqs-wait-sample-received-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -40,7 +40,7 @@
         {
             "id": "n2_lab_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-lab-result",
+            "task_template_id": "npqs-wait-lab-result-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -61,7 +61,7 @@
         {
             "id": "n3_fumigation_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-fumigation",
+            "task_template_id": "npqs-wait-fumigation-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -75,7 +75,7 @@
         {
             "id": "n4_visual_decision_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-visual-decision",
+            "task_template_id": "npqs-wait-visual-decision-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -91,7 +91,7 @@
         {
             "id": "n5_visual_insp_wait",
             "type": "TASK",
-            "task_template_id": "npqs-wait-visual-inspection",
+            "task_template_id": "npqs-wait-visual-inspection-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -112,7 +112,7 @@
         {
             "id": "n6_docs_apply",
             "type": "TASK",
-            "task_template_id": "npqs-submit-shipping-docs",
+            "task_template_id": "npqs-submit-shipping-docs-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -128,7 +128,7 @@
         {
             "id": "n7_payment",
             "type": "TASK",
-            "task_template_id": "npqs-pay-certificate-fee",
+            "task_template_id": "npqs-pay-certificate-fee-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -145,7 +145,7 @@
         {
             "id": "n8_issue_certificate",
             "type": "TASK",
-            "task_template_id": "npqs-issue-certificate",
+            "task_template_id": "npqs-issue-certificate-flow",
             "input_mapping": {
                 "reference_number": "reference_number"
             },
@@ -157,7 +157,7 @@
         {
             "id": "n9_ippc_upload",
             "type": "TASK",
-            "task_template_id": "npqs-upload-ippc",
+            "task_template_id": "npqs-upload-ippc-flow",
             "input_mapping": {
                 "reference_number": "reference_number",
                 "certificate_id": "npqs.certificate_id",

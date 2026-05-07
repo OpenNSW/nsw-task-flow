@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
+	engine "github.com/OpenNSW/go-temporal-workflow"
 	"github.com/OpenNSW/nsw-task-flow/orchestrator"
 )
 
@@ -25,18 +26,22 @@ func loadTemplates(registry *orchestrator.TaskTemplateRegistry, templatesDir str
 			return fmt.Errorf("read %s: %w", path, err)
 		}
 
+		// 1. Try to unmarshal and register as a task template entry
 		var entry orchestrator.TaskTemplateEntry
-		if err := json.Unmarshal(data, &entry); err != nil {
-			// Skip files that aren't valid JSON or are other structures
-			return nil
-		}
-		if entry.TemplateID == "" || entry.PluginName == "" {
-			// Skip non-template JSONs (like workflow graphs, UI schemas, or JSONForms files)
+		if err := json.Unmarshal(data, &entry); err == nil && entry.TemplateID != "" && entry.PluginName != "" {
+			registry.Register(entry)
+			log.Printf("[Registry] Loaded template: %s (task_type=%s, plugin=%s)", entry.TemplateID, entry.TaskType, entry.PluginName)
 			return nil
 		}
 
-		registry.Register(entry)
-		log.Printf("[Registry] Loaded template: %s (task_type=%s, plugin=%s)", entry.TemplateID, entry.TaskType, entry.PluginName)
+		// 2. Try to unmarshal and register as a composite workflow template definition
+		var workflowDef engine.WorkflowDefinition
+		if err := json.Unmarshal(data, &workflowDef); err == nil && workflowDef.ID != "" && len(workflowDef.Nodes) > 0 {
+			registry.RegisterWorkflow(workflowDef)
+			log.Printf("[Registry] Loaded sub-workflow template: %s (%s)", workflowDef.ID, workflowDef.Name)
+			return nil
+		}
+
 		return nil
 	})
 

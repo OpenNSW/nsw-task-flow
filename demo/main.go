@@ -57,6 +57,18 @@ func main() {
 		log.Fatalln("Failed to register external review plugin:", err)
 	}
 
+	if err := pluginsRegistry.Register("WAIT_FOR_EVENT", plugins.NewEventWaitPlugin(demoDispatcher)); err != nil {
+		log.Fatalln("Failed to register wait for event plugin:", err)
+	}
+
+	if err := pluginsRegistry.Register("PAYMENT", plugins.NewPaymentPlugin(demoDispatcher)); err != nil {
+		log.Fatalln("Failed to register payment plugin:", err)
+	}
+
+	if err := pluginsRegistry.Register("FIRE_AND_FORGET", plugins.NewHTTPPostPlugin(demoDispatcher)); err != nil {
+		log.Fatalln("Failed to register http post plugin:", err)
+	}
+
 	// 4. Set up Temporal Managers (parent and task) with deferred task manager wiring
 	var tm *orchestrator.TaskManager
 

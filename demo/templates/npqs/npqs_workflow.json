@@ -13,7 +13,7 @@
             "task_template_id": "npqs-apply-phyto-cert-flow",
             "input_mapping": {},
             "output_mapping": {
-                "reviewerform.reference_number": "reference_number",
+                "reviewerform.reference_number": "npqs.reference_number",
                 "reviewerform.sample_required": "npqs.sample_required",
                 "reviewerform.fumigation_required": "npqs.fumigation_required",
                 "reviewerform.review_outcome": "npqs.application_review_outcome"
@@ -34,7 +34,7 @@
             "type": "TASK",
             "task_template_id": "npqs-wait-sample-received-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {}
         },
@@ -43,7 +43,7 @@
             "type": "TASK",
             "task_template_id": "npqs-wait-lab-result-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "lab_result": "npqs.lab_result"
@@ -64,7 +64,7 @@
             "type": "TASK",
             "task_template_id": "npqs-wait-fumigation-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {}
         },
@@ -78,7 +78,7 @@
             "type": "TASK",
             "task_template_id": "npqs-wait-visual-decision-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "visual_inspection_required": "npqs.visual_inspection_required"
@@ -94,7 +94,7 @@
             "type": "TASK",
             "task_template_id": "npqs-visual-inspection-result-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "visual_result": "npqs.visual_result"
@@ -115,7 +115,7 @@
             "type": "TASK",
             "task_template_id": "npqs-submit-shipping-docs-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "doc_review_result": "npqs.doc_review_result"
@@ -131,7 +131,7 @@
             "type": "TASK",
             "task_template_id": "npqs-pay-certificate-fee-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "payment_status": "npqs.payment_status",
@@ -148,7 +148,7 @@
             "type": "TASK",
             "task_template_id": "npqs-issue-certificate-flow",
             "input_mapping": {
-                "reference_number": "reference_number"
+                "npqs.reference_number": "reference_number"
             },
             "output_mapping": {
                 "certificate_id": "npqs.certificate_id",
@@ -160,9 +160,9 @@
             "type": "TASK",
             "task_template_id": "npqs-upload-ippc-flow",
             "input_mapping": {
-                "reference_number": "reference_number",
-                "certificate_id": "npqs.certificate_id",
-                "certificate_url": "npqs.certificate_url"
+                "npqs.reference_number": "reference_number",
+                "npqs.certificate_id": "certificate_id",
+                "npqs.certificate_url": "certificate_url"
             },
             "output_mapping": {}
         },

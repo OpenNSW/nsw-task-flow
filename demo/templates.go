@@ -28,7 +28,8 @@ func loadTemplates(registry *orchestrator.TaskTemplateRegistry, templatesDir str
 
 		// 1. Try to unmarshal and register as a task template entry
 		var entry orchestrator.TaskTemplateEntry
-		if err := json.Unmarshal(data, &entry); err == nil && entry.TemplateID != "" && entry.PluginName != "" {
+		errTemplate := json.Unmarshal(data, &entry)
+		if errTemplate == nil && entry.TemplateID != "" && entry.PluginName != "" {
 			registry.Register(entry)
 			log.Printf("[Registry] Loaded template: %s (task_type=%s, plugin=%s)", entry.TemplateID, entry.TaskType, entry.PluginName)
 			return nil
@@ -36,10 +37,19 @@ func loadTemplates(registry *orchestrator.TaskTemplateRegistry, templatesDir str
 
 		// 2. Try to unmarshal and register as a composite workflow template definition
 		var workflowDef engine.WorkflowDefinition
-		if err := json.Unmarshal(data, &workflowDef); err == nil && workflowDef.ID != "" && len(workflowDef.Nodes) > 0 {
+		errWorkflow := json.Unmarshal(data, &workflowDef)
+		if errWorkflow == nil && workflowDef.ID != "" && len(workflowDef.Nodes) > 0 {
 			registry.RegisterWorkflow(workflowDef)
 			log.Printf("[Registry] Loaded sub-workflow template: %s (%s)", workflowDef.ID, workflowDef.Name)
 			return nil
+		}
+
+		// If it's not a template or a sub-workflow, check if the JSON is malformed
+		if errTemplate != nil && errWorkflow != nil {
+			var raw map[string]any
+			if errRaw := json.Unmarshal(data, &raw); errRaw != nil {
+				log.Printf("[Registry] Warning: Invalid JSON syntax in file %s: %v", path, errRaw)
+			}
 		}
 
 		return nil

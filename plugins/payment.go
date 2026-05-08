@@ -9,13 +9,13 @@ import (
 // PaymentPlugin implements the generic_payment plugin.
 // It initiates a payment step externally and transitions the task record to "PENDING_PAYMENT".
 type PaymentPlugin struct {
-	dispatcher HTTPDispatcher
+	dispatcher Dispatcher
 }
 
 // NewPaymentPlugin creates a new PaymentPlugin.
-func NewPaymentPlugin(dispatcher HTTPDispatcher) *PaymentPlugin {
+func NewPaymentPlugin(dispatcher Dispatcher) *PaymentPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultHTTPDispatcher
+		dispatcher = DefaultDispatcher
 	}
 	return &PaymentPlugin{
 		dispatcher: dispatcher,

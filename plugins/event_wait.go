@@ -9,13 +9,13 @@ import (
 // EventWaitPlugin implements the register_task_and_wait plugin.
 // It queues a task externally via HTTP POST and transitions the task record to "WAITING_FOR_EVENT".
 type EventWaitPlugin struct {
-	dispatcher HTTPDispatcher
+	dispatcher Dispatcher
 }
 
 // NewEventWaitPlugin creates a new EventWaitPlugin.
-func NewEventWaitPlugin(dispatcher HTTPDispatcher) *EventWaitPlugin {
+func NewEventWaitPlugin(dispatcher Dispatcher) *EventWaitPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultHTTPDispatcher
+		dispatcher = DefaultDispatcher
 	}
 	return &EventWaitPlugin{
 		dispatcher: dispatcher,

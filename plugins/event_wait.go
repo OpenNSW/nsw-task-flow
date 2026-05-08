@@ -15,7 +15,7 @@ type EventWaitPlugin struct {
 // NewEventWaitPlugin creates a new EventWaitPlugin.
 func NewEventWaitPlugin(dispatcher Dispatcher) *EventWaitPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultDispatcher
+		dispatcher = DefaultHTTPDispatcher
 	}
 	return &EventWaitPlugin{
 		dispatcher: dispatcher,

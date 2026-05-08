@@ -15,7 +15,7 @@ type APICallPlugin struct {
 // NewAPICallPlugin creates a new APICallPlugin.
 func NewAPICallPlugin(dispatcher Dispatcher) *APICallPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultDispatcher
+		dispatcher = DefaultHTTPDispatcher
 	}
 	return &APICallPlugin{
 		dispatcher: dispatcher,

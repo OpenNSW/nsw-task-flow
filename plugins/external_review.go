@@ -16,7 +16,7 @@ type ExternalReviewPlugin struct {
 // NewExternalReviewPlugin returns a plugin with a custom or default HTTP dispatcher.
 func NewExternalReviewPlugin(dispatcher Dispatcher) *ExternalReviewPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultDispatcher
+		dispatcher = DefaultHTTPDispatcher
 	}
 	return &ExternalReviewPlugin{
 		dispatcher: dispatcher,

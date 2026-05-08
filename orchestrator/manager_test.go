@@ -204,7 +204,7 @@ func TestTaskManager_Lifecycle(t *testing.T) {
 		Inputs:         map[string]any{"userform.name": "Alice"},
 	}
 
-	if _, err := tm.StartTask(payload); err != nil && err != activity.ErrResultPending {
+	if _, err := tm.StartTask(payload); err != nil && !errors.Is(err, activity.ErrResultPending) {
 		t.Fatalf("StartTask failed: %v", err)
 	}
 	if !taskWorkflowCalled {
@@ -230,7 +230,7 @@ func TestTaskManager_Lifecycle(t *testing.T) {
 		NodeID:         "task-node",
 		TaskTemplateID: "generic_user_input",
 	}
-	if _, err := tm.StartSubTask(payloadTaskWF); err != nil && err != activity.ErrResultPending {
+	if _, err := tm.StartSubTask(payloadTaskWF); err != nil && !errors.Is(err, activity.ErrResultPending) {
 		t.Fatalf("StartSubTask failed: %v", err)
 	}
 
@@ -412,7 +412,7 @@ func TestStartSubTask_ExternalReviewPath(t *testing.T) {
 		NodeID:         "node-ext",
 		TaskTemplateID: "generic_external_review",
 	})
-	if err != nil && err != activity.ErrResultPending {
+	if err != nil && !errors.Is(err, activity.ErrResultPending) {
 		t.Fatalf("StartSubTask for generic_external_review failed: %v", err)
 	}
 

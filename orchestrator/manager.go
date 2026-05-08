@@ -3,6 +3,7 @@ package orchestrator
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -210,7 +211,7 @@ func (tm *TaskManager) StartSubTask(payload engine.TaskPayload) (map[string]any,
 	}
 
 	err := plugin.Execute(pluginCtx, regEntry.PluginProperties)
-	if err == plugins.ErrSuspended {
+	if errors.Is(err, plugins.ErrSuspended) {
 		tm.db.SaveTask(record)
 		return nil, activity.ErrResultPending
 	}

@@ -15,7 +15,7 @@ type PaymentPlugin struct {
 // NewPaymentPlugin creates a new PaymentPlugin.
 func NewPaymentPlugin(dispatcher Dispatcher) *PaymentPlugin {
 	if dispatcher == nil {
-		dispatcher = DefaultDispatcher
+		dispatcher = DefaultHTTPDispatcher
 	}
 	return &PaymentPlugin{
 		dispatcher: dispatcher,

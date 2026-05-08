@@ -13,9 +13,9 @@ import (
 // Dispatcher defines the function signature for executing external system integrations.
 type Dispatcher func(ctx context.Context, url string, taskID string, payload map[string]any) error
 
-// DefaultDispatcher sends the payload as-is with no envelope.
+// DefaultHTTPDispatcher sends the payload as-is with no envelope.
 // Callers that need a specific request shape should provide a custom dispatcher.
-func DefaultDispatcher(ctx context.Context, url string, taskID string, payload map[string]any) error {
+func DefaultHTTPDispatcher(ctx context.Context, url string, taskID string, payload map[string]any) error {
 	bodyBytes, err := json.Marshal(payload)
 	if err != nil {
 		return fmt.Errorf("failed to marshal dispatch payload: %w", err)
